@@ -9,37 +9,82 @@ interface Project {
   title: string;
   description: string;
   tags: string[];
+  category: 'photogrammetry' | 'uas' | 'land' | 'ai';
   githubLink?: string;
   liveLink?: string;
   image: string; // Path relative to public/projects folder
+  specs?: string[]; // Technical specifications
 }
 
 export default function ProjectsPage() {
-  // Sample project data - replace with your actual projects
+  // Professional project portfolio
   const projects: Project[] = [
+    // Photogrammetry & Mapping
     {
-      title: "Portfolio Website",
-      description: "A clean and modern portfolio website built with Next.js and Tailwind CSS.",
-      tags: ["Next.js", "React", "Tailwind CSS"],
-      githubLink: "https://github.com/yourusername/portfolio",
-      liveLink: "https://your-portfolio.com",
+      title: "Residential Property Documentation",
+      description: "High-resolution aerial photogrammetry mapping for real estate documentation with centimeter-level accuracy using Quantum Systems Trinity Pro.",
+      tags: ["Photogrammetry", "Real Estate", "Quantum Systems", "GeoTIFF"],
+      category: "photogrammetry",
+      specs: ["1cm GSD accuracy", "Quantum Systems Trinity Pro", "GeoTIFF mosaics", "Emlid Reach RS3 RTK"],
       image: "portfolio.png"
     },
     {
-      title: "Project 2",
-      description: "Description of your second project.",
-      tags: ["Tag1", "Tag2", "Tag3"],
-      githubLink: "https://github.com/yourusername/project2",
-      liveLink: "https://project2.com",
+      title: "Agricultural Multispectral Analysis",
+      description: "Comprehensive crop monitoring and yield analysis using multispectral imaging for precision agriculture applications.",
+      tags: ["Multispectral", "Agriculture", "NDVI", "Precision Farming"],
+      category: "photogrammetry",
+      specs: ["NDVI analysis", "Multispectral sensors", "Crop health mapping", "Yield prediction models"],
+      image: "project2.png"
+    },
+    
+    // UAS/UAV Operations
+    {
+      title: "AirSpace Integration Test Range",
+      description: "Professional UAS test operations demonstrating advanced flight capabilities and airspace integration protocols.",
+      tags: ["UAS Operations", "AirSpace Integration", "FAA Part 107", "Flight Testing"],
+      category: "uas",
+      specs: ["FAA Part 107 certified", "AirSpace Integration certified", "Advanced flight operations", "Safety protocols"],
+      image: "project3.png"
+    },
+    
+    // Land Investing
+    {
+      title: "Land Insights Analytics Platform",
+      description: "Custom market research and analytics tools for land investment opportunities with automated workflow integration.",
+      tags: ["Land Analysis", "Market Research", "Investment Analytics", "Automation"],
+      category: "land",
+      specs: ["Market trend analysis", "Automated workflows (n8n)", "Pebble CRM integration", "Investment ROI tracking"],
+      githubLink: "https://github.com/andykaufman/land-insights",
+      image: "portfolio.png"
+    },
+    
+    // AI Building Projects
+    {
+      title: "Morning Check-In GPT",
+      description: "Custom GPT for daily productivity and goal tracking with personalized insights and recommendations.",
+      tags: ["Custom GPT", "Productivity", "AI Assistant", "OpenAI"],
+      category: "ai",
+      specs: ["OpenAI GPT-4", "Custom training data", "Productivity optimization", "Daily insights"],
+      liveLink: "https://chat.openai.com/g/g-morning-checkin",
       image: "project2.png"
     },
     {
-      title: "Project 3",
-      description: "Description of your third project.",
-      tags: ["Tag1", "Tag2", "Tag3"],
-      githubLink: "https://github.com/yourusername/project3",
-      liveLink: "https://project3.com",
+      title: "Personal Brand GPT",
+      description: "AI-powered personal branding assistant for content creation and professional positioning across platforms.",
+      tags: ["Personal Branding", "Content Creation", "AI", "Marketing"],
+      category: "ai",
+      specs: ["Brand voice optimization", "Content strategy", "Multi-platform integration", "Analytics tracking"],
+      liveLink: "https://chat.openai.com/g/g-personal-brand",
       image: "project3.png"
+    },
+    {
+      title: "Automation Workflow Suite",
+      description: "Business process automation using n8n for seamless integration between CRM, mapping tools, and client management.",
+      tags: ["n8n", "Automation", "Business Workflows", "Integration"],
+      category: "ai",
+      specs: ["n8n workflow automation", "CRM integration", "API connections", "Process optimization"],
+      githubLink: "https://github.com/andykaufman/automation-workflows",
+      image: "portfolio.png"
     }
   ];
 
@@ -78,8 +123,8 @@ export default function ProjectsPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
-        <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-sky-500 to-blue-500 dark:from-sky-400 dark:to-blue-400 text-transparent bg-clip-text mb-4">My Projects</h1>
-        <p className="text-lg text-zinc-700 dark:text-zinc-300">Here are some of the things I&apos;ve built</p>
+        <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-sky-500 to-blue-500 dark:from-sky-400 dark:to-blue-400 text-transparent bg-clip-text mb-4">Professional Portfolio</h1>
+        <p className="text-lg text-zinc-700 dark:text-zinc-300">Showcasing expertise in Photogrammetry, UAS Operations, Land Investing & AI Building</p>
       </motion.div>
 
       {/* Projects grid */}
@@ -121,10 +166,25 @@ export default function ProjectsPage() {
 
               <CardContent>
                 {/* Project description */}
-                <p className="text-zinc-600 dark:text-zinc-400">{project.description}</p>
+                <p className="text-zinc-600 dark:text-zinc-400 mb-4">{project.description}</p>
+
+                {/* Technical specifications */}
+                {project.specs && (
+                  <div className="mb-4">
+                    <h4 className="text-sm font-semibold text-zinc-700 dark:text-zinc-300 mb-2">Technical Specs:</h4>
+                    <ul className="text-sm text-zinc-600 dark:text-zinc-400 space-y-1">
+                      {project.specs.map((spec, specIndex) => (
+                        <li key={specIndex} className="flex items-center">
+                          <span className="w-1.5 h-1.5 bg-sky-500 rounded-full mr-2 flex-shrink-0"></span>
+                          {spec}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
 
                 {/* Project tags */}
-                <div className="mt-5 flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2">
                   {project.tags.map((tag, tagIndex) => (
                     <motion.span
                       key={tagIndex}

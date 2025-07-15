@@ -13,9 +13,13 @@ export default function Home() {
           <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-sky-500 to-blue-500 dark:from-sky-400 dark:to-blue-400 text-transparent bg-clip-text">Welcome</h1>
 
           {/* Introduction text with consistent color */}
-          <p className="text-xl md:text-2xl text-zinc-700 dark:text-zinc-300">Hi! I&apos;m Andy. I&apos;m into 
-            UAS/UAV Operations &
-          Real Estate/Land Investing</p>
+          <p className="text-xl md:text-2xl text-zinc-700 dark:text-zinc-300">
+            Hi! I&apos;m Andy. Specializing in 
+            <span className="font-semibold text-sky-600 dark:text-sky-400"> Photogrammetry Mapping</span>, 
+            <span className="font-semibold text-sky-600 dark:text-sky-400"> UAS/UAV Operations</span>, 
+            <span className="font-semibold text-sky-600 dark:text-sky-400"> Land Investing</span> & 
+            <span className="font-semibold text-sky-600 dark:text-sky-400"> AI Building</span>
+          </p>
 
           {/* Call-to-action button with gradient */}
           <Link
